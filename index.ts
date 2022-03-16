@@ -72,7 +72,7 @@ app.get('/banking-info', async (req, res) => {
         const decodedData = jwt.verify(token, process.env.My_Secret)
         //@ts-ignore
         const user = await prisma.user.findUnique({ where: { id: decodedData.id }, include: { transactions: true } })
-        res.send(user)
+        res.send({ data: user })
     }
     catch (error) {
         //@ts-ignore
